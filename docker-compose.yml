@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+
+  postgres1:
+    hostname: postgres1
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "password"
+
+  redis1:
+    hostname: redis1
+    image: redis:7 # latest=6.2.6, 5.0.7 is the default for ubuntu 20.04
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass kl234j23095125125125
