@@ -9,6 +9,7 @@
 - docker-compose
 - goose, go-migrate
 
+## Folder Structure
 
 - model - handle all persistence, and 3rd party calls
 - business (controller) -  handle all business logic
