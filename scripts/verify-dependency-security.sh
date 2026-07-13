@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-modules="$(go list -m -f '{{.Path}} {{.Version}}' all)"
+modules="$(go list -m -f '{{.Path}} {{if .Replace}}{{.Replace.Version}}{{else}}{{.Version}}{{end}}' all)"
 
 selected_version() {
   awk -v module="$1" '$1 == module { print $2 }' <<<"$modules"

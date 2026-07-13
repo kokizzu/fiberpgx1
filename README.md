@@ -1,5 +1,7 @@
 
-# Fiber + Pgx example
+# Fiber + Pgx Example
+
+A small Fiber example that shows a layered handler/business/model structure with pgx.
 
 - http://gofiber.io
 - postgresql + pgadmin4
@@ -15,5 +17,10 @@
 - business (controller) -  handle all business logic
 - presentation (view) - handle all parsing and rendering
 
-## TODO
-- add unit and integration test
+## Maintenance checklist
+
+- [x] Go runtime updated to 1.26.5.
+- [x] Direct Go dependencies refreshed and module files tidied.
+- [x] Added a sanity test for article validation without requiring PostgreSQL.
+- [x] `make test` compiles and tests all Go packages.
+- [x] `make verify-dependency-security` and `make vulncheck` check dependency security.

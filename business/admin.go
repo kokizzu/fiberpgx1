@@ -1,11 +1,14 @@
 package business
 
 import (
+	"errors"
 	"fmt"
 	"log"
 
 	"fiberpgx1/model"
 )
+
+var ErrTitleRequired = errors.New("title is required")
 
 type Admin struct {
 	Pg *model.Adapter
@@ -22,7 +25,7 @@ type CreateArticleOut struct {
 func (a *Admin) CreateArticle(in CreateArticleIn) (out CreateArticleOut) {
 	// validasi
 	if in.Title == "" {
-		out.Err = fmt.Errorf("title is required")
+		out.Err = ErrTitleRequired
 		return
 	}
 	err := in.ArticleModel.Insert(a.Pg)

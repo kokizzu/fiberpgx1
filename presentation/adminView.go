@@ -1,6 +1,8 @@
 package presentation
 
 import (
+	"errors"
+
 	"github.com/gofiber/fiber/v2"
 
 	"fiberpgx1/business"
@@ -20,7 +22,11 @@ func (p *Presenter) AdminCreateArticle(ctx *fiber.Ctx) error {
 	}
 	out := p.Admin.CreateArticle(in)
 	if out.Err != nil {
-		// TODO: differentiate by type of error
+		if errors.Is(out.Err, business.ErrTitleRequired) {
+			return ctx.Status(400).JSON(fiber.Map{
+				"error": out.Err.Error(),
+			})
+		}
 		return ctx.Status(500).JSON(fiber.Map{
 			"error": out.Err.Error(),
 		})
